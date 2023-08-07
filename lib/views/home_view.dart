@@ -21,7 +21,17 @@ class HomeView extends ConsumerWidget {
           ),
         ),
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromARGB(0, 85, 72, 72),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            color: Colors.black,
+            onPressed: () {
+              showSearch(
+                  context: context, delegate: ArticleSearchDelegate(ref));
+            },
+          ),
+        ],
       ),
       body: StatefulWrapper(
         onInit: () async {
