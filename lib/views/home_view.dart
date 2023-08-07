@@ -15,24 +15,25 @@ class HomeView extends ConsumerWidget {
         title: const Text(
           "HABERLER",
           style: TextStyle(
-            fontSize: 22, // Yazı boyutunu 24 olarak ayarladık
-            fontWeight: FontWeight.normal, // Yazıyı kalın hale getirdik
-            color: Color.fromARGB(255, 90, 144, 177),
+            fontSize: 22,
+            fontWeight: FontWeight.normal,
+            color: Color.fromARGB(255, 241, 246, 248),
           ),
         ),
-        elevation: 0,
-        backgroundColor: const Color.fromARGB(0, 85, 72, 72),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            color: Colors.black,
+            color: Colors.white,
             onPressed: () {
               showSearch(
-                  context: context, delegate: ArticleSearchDelegate(ref));
+                context: context,
+                delegate: ArticleSearchDelegate(ref),
+              );
             },
           ),
         ],
       ),
+      backgroundColor: Color.fromARGB(255, 254, 254, 254),
       body: StatefulWrapper(
         onInit: () async {
           await viewModel.getNewList();
@@ -106,7 +107,7 @@ class ArticleSearchDelegate extends SearchDelegate<String> {
   ArticleSearchDelegate(this.ref);
 
   @override
-  String get searchFieldLabel => 'Search articles';
+  String get searchFieldLabel => 'Search';
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -132,8 +133,6 @@ class ArticleSearchDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    // Implement the logic to show the search results based on the query.
-    // You can use the `query` property to get the search query.
     final viewModel = ref.read(homeViewModelProvider);
     final searchResults = viewModel.newsList
         ?.where((article) =>

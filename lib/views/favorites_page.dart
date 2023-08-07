@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:newsapi/widgets/wrapper/statefull_wrapper.dart';
 
+import '../model/news.dart';
 import '../riverpod_manager.dart';
+import 'home_view.dart';
 import 'web_view.dart';
 
 class FavoritesPage extends ConsumerWidget {
@@ -13,6 +16,31 @@ class FavoritesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(homeViewModelProvider);
+    List<News>? searchFavorites(String query) {
+      if (query.isEmpty) {
+        return viewModel.favoriteList
+            ?.map((article) => News(
+                  title: article.title,
+                  description: article.description,
+                  urlToImage: article.urlToImage,
+                ))
+            .toList();
+      } else {
+        return viewModel.favoriteList
+            ?.where((article) =>
+                article.title?.toLowerCase().contains(query.toLowerCase()) ??
+                false ||
+                    article.description!
+                        .toLowerCase()
+                        .contains(query.toLowerCase()))
+            .map((article) => News(
+                  title: article.title,
+                  description: article.description,
+                  urlToImage: article.urlToImage,
+                ))
+            .toList();
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -21,12 +49,21 @@ class FavoritesPage extends ConsumerWidget {
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.normal,
-            color: Color.fromARGB(255, 90, 144, 177),
+            color: Color.fromARGB(255, 249, 253, 255),
           ),
         ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            color: Colors.white,
+            onPressed: () {
+              showSearch(
+                  context: context, delegate: ArticleSearchDelegate(ref));
+            },
+          ),
+        ],
       ),
+      backgroundColor: Color.fromARGB(255, 238, 242, 244),
       body: StatefulWrapper(
         onInit: () async {
           await viewModel.sharredLoad();

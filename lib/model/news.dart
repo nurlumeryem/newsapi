@@ -9,6 +9,9 @@ class News {
     this.status,
     this.totalResults,
     this.articles,
+    String? title,
+    String? description,
+    String? urlToImage,
   });
 
   News copyWith({
@@ -42,7 +45,8 @@ class News {
   }
 
   @override
-  String toString() => "News(status: $status,totalResults: $totalResults,articles: $articles)";
+  String toString() =>
+      "News(status: $status,totalResults: $totalResults,articles: $articles)";
 
   @override
   int get hashCode => Object.hash(status, totalResults, articles);
