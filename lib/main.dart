@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:newsapi/pages/home/view/home_view.dart';
+import 'package:newsapi/views/base_view.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: const Color.fromARGB(255, 101, 126, 140),
       ),
-      home: const HomeView(),
+      home: const BaseView(),
     );
   }
 }

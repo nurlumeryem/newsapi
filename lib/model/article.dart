@@ -21,8 +21,6 @@ class Articles {
     this.content,
   });
 
-  set isFavorite(bool isFavorite) {}
-
   Articles copyWith({
     Source? source,
     String? author,

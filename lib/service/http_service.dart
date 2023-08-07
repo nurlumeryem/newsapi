@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:newsapi/model/article.dart';
 import 'package:newsapi/model/news.dart';
@@ -15,7 +16,7 @@ class HttpService {
 
   Future<List<Articles>> getNews({String? category, String? pageCount}) async {
     Map<String, dynamic> queryParameters = {
-      "q": category,
+      "q": category ?? "haber",
       "page": pageCount,
       "apiKey": apiKey,
       "language": "tr",
@@ -23,6 +24,7 @@ class HttpService {
     Uri uri = Uri.parse(baseUrl).replace(queryParameters: queryParameters);
     final response = await http.get(uri);
     var responseData = News.fromJson(jsonDecode(response.body));
+    inspect(responseData.articles);
     return responseData.articles!;
   }
 }
