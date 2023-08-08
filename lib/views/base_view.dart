@@ -16,7 +16,7 @@ class BaseView extends ConsumerWidget {
           backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
           color: const Color.fromARGB(255, 53, 49, 49),
           activeColor: const Color.fromARGB(255, 28, 25, 25),
-          tabBackgroundColor: Color.fromARGB(255, 103, 146, 172),
+          tabBackgroundColor: const Color.fromARGB(255, 103, 146, 172),
           gap: 5,
           padding: const EdgeInsets.all(16),
           tabs: [
@@ -32,7 +32,7 @@ class BaseView extends ConsumerWidget {
             ),
           ],
         ),
-        backgroundColor: Color.fromARGB(255, 249, 252, 252),
+        backgroundColor: const Color.fromARGB(255, 249, 252, 252),
         body: viewModel.currentPage[viewModel.currentPageCount]);
   }
 }

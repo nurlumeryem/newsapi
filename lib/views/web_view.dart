@@ -17,6 +17,7 @@ class MyWebView extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.red,
           title: Text(news.title ?? ""),
           centerTitle: true,
           actions: [

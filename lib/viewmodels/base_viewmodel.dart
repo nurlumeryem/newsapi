@@ -29,7 +29,9 @@ class HomeViewModel extends ChangeNotifier {
   Future<List<Articles>?> sharredLoad() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     var list = prefs.getStringList("favoriteList");
-    favoriteList = list?.map((e) => Articles.fromJson(jsonDecode(e))).toList();
+    favoriteList = list?.isNotEmpty ?? false
+        ? list?.map((e) => Articles.fromJson(jsonDecode(e))).toList()
+        : [];
     notifyListeners();
     return favoriteList;
   }
@@ -46,10 +48,10 @@ class HomeViewModel extends ChangeNotifier {
 
   // SİLME İŞLEMİ İÇİN ÖNCE LİSTEDEN SİLECEKSİN. SONRA SHARREDSAVE FONKSİYONUNU ÇAĞIRACAKSIN.
 
-  getNewList() async {
+  getNewList({String? category}) async {
     isLoading = true;
-    newsList = await HttpService.instance
-        .getNews(category: "haber", pageCount: pageCount.toString());
+    newsList = await HttpService.instance.getNews(
+        category: category ?? "haber", pageCount: pageCount.toString());
     isLoading = false;
 
     notifyListeners();
