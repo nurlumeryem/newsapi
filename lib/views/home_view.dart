@@ -15,12 +15,13 @@ class HomeView extends ConsumerWidget {
     final viewModel = ref.watch(homeViewModelProvider);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         title: const Text(
           "HABERLER",
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.normal,
-            color: Color.fromARGB(255, 241, 246, 248),
+            color: Colors.white,
           ),
         ),
         actions: [
@@ -36,7 +37,7 @@ class HomeView extends ConsumerWidget {
           ),
         ],
       ),
-      backgroundColor: const Color.fromARGB(255, 254, 254, 254),
+      backgroundColor: Colors.white,
       body: StatefulWrapper(
         onInit: () async {
           await viewModel.getNewList();

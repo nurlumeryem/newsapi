@@ -15,8 +15,8 @@ class BaseView extends ConsumerWidget {
           onTabChange: viewModel.changePage,
           backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
           color: const Color.fromARGB(255, 53, 49, 49),
-          activeColor: const Color.fromARGB(255, 28, 25, 25),
-          tabBackgroundColor: const Color.fromARGB(255, 103, 146, 172),
+          activeColor: Colors.white,
+          tabBackgroundColor: Colors.blueGrey,
           gap: 5,
           padding: const EdgeInsets.all(16),
           tabs: [

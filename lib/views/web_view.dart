@@ -17,7 +17,7 @@ class MyWebView extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.blueGrey,
           title: Text(news.title ?? ""),
           centerTitle: true,
           actions: [
@@ -28,7 +28,15 @@ class MyWebView extends ConsumerWidget {
               icon: const Icon(Icons.ios_share_rounded),
             ),
             IconButton(
-              icon: const Icon(Icons.favorite_border_outlined),
+              icon: Icon(
+                // Use Icons.favorite if news is in favoriteList, otherwise use Icons.favorite_border_outlined
+                viewModel.favoriteList?.contains(news) ?? false
+                    ? Icons.favorite
+                    : Icons.favorite_border_outlined,
+                color: viewModel.favoriteList?.contains(news) ?? false
+                    ? Colors.white
+                    : Colors.white,
+              ),
               onPressed: () async {
                 viewModel.favoriteList?.add(news);
                 await viewModel.sharredSave();

@@ -18,6 +18,7 @@ class FavoritesPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         title: const Text(
           'FAVORİLER',
           style: TextStyle(

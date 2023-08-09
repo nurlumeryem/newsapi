@@ -75,6 +75,6 @@ class ArticleSearchDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return SizedBox();
+    return const SizedBox();
   }
 }
